@@ -1,0 +1,202 @@
+/* Permet de gérer tout ce qui déborde du contenu, le mettre au tout début d'un fichier css ! */
+/* auto : réadapter la taille du conteneur automatiquement pour qu'il contienne tout ce qui déborde */
+*{
+    overflow: auto;
+}
+body{
+    /* On modifie body avec une couleur de fond et une police d'écriture */
+    background-color: #8BA1BB;
+    font-family: Arial;
+}
+div.contenu{
+    /* On peut mettre d'autres élements concernés par le style avec des virgules, exemple : p.categorie, h2.categorie, ul, etc. */
+    /* Différence entre class et id : l'id ça ne concerne qu'un seul élément, contrairement à la class */
+    background-color: white;
+    margin: 60px 10% 80px 60px;
+    /* padding : fonctionne comme margin mais c'est pour les marges */
+    padding : 0px 30px 30px 30px;
+    /* Pour éviter que le tableau déborde de contenu, lorsque l'on rétrécit à fond la page */
+    /* mais cela a créé un nouveau problème : "Recette" ne s'aligne plus bien quand la fenêtre est petite ! A SUIVRE .... */
+    min-width: 350px;
+    /* box-shadow : mettre un effet d'ombre sur le bloc */
+    /* il existe aussi text-shadow pour le texte */
+    box-shadow: 0px 0px 8px 8px rgba(0,0,0,0.1);
+    /* Nouvelle façon de mettre Recette en décalé sur les deux blocs */
+    /* Nouveau problème : la table Préparation sort à nouveau du contenu */
+    /* Pour gérer ça, on a entouré Ingredients et Préparation d'une simple div, en conséquent, ça prend ce qu'il y a tout en haut, c'est-à-dire : overflow: auto;*/
+    overflow: visible;
+}
+h1{
+    /* C'est uniquement pour aligner du texte ! */
+    text-align:center;
+    margin-bottom: 12px;
+    margin-top: 10px;
+}
+p.description{
+    /*margin : 1 composante pour les 4 côtés (px = pixel) 
+             : ou 2 composantes : verticale puis horizontale 
+             : ou 4 composantes : haut droite bas gauche (comme un cercle, sens inverse aiguilles d'une montre) 
+               On peut également mettre des pourcentages : ça permet que si on modifie la taille de la fenêtre, ça s'adapte
+               On peut mettre margin-left:auto et margin-right:auto ensemnble pour centrer quelque chose automatiquement,
+               si on met que l'un des deux : ça va occuper toute la place, donc ça va pousser l'élement jusqu'à l'autre extrémité
+               Et on peut également metttre des nombres négatifs pour que ça parte dans l'autre sens que prévu */
+    /* Ici, dans le bloc, le texte est bien centré mais le bloc lui n'est pas centré, il faut donc une balise div pour arranger ça (div.description) */       
+    text-align:center;
+    /*-- max-width : largeur maximale d'une ligne par exemple, ici pour forcer à avoir un paragraphe sur deux lignes par exemple */
+    max-width: 400px;
+    /*display : - inline : pour que le cadre n'occupe que l'espace nécessaire, le tout sur une seule ligne (PS : ça bloque l'utilisation de certaines propriétés comme margin-top car on n'est que sur une seule ligne)
+                - inline-block : comme inline mais on n'est pas bloqué, avec ça on peut appliquer un text-align: center ou un margin-top
+                - block : valeur par défaut */
+    display :inline-block;
+    /* font-size : gère la taille de police */
+    font-size: 14px;
+    /*Lorsque l'on a un soucis, pour l'analyser, appliquer un background-color pour comprendre ce qu'il se passe*/
+    /*background-color: yellow; */
+}
+div.description{
+    /* Permet de centrer le bloc contenant le texte, et non le texte uniquement */
+    /* PS : ça fonctionne uniquement grâce à display :inline-block; qui est dans p.description */
+    text-align: center;
+    /*Lorsque l'on a un soucis, appliquer un background-color pour comprendre ce qu'il se passe*/
+    /*background-color: blue; */
+}
+.centre{
+    /* Cette propriété peut servir plusieurs fois pour centrer du texte par exemple ! */
+    text-align: center;
+    /* Pour que l'image prenne 100% du contenu */
+    width: 100%;
+}
+p#categorie{
+    /* On peut indiquer également au CSS de modifier tous les paragraphes p (couleur de fond et d'écriture) -->
+       Si on veut sélectionner un paragraphe en particulier, on peut utiliser un id : il faut mettre son nom dans la balise p et dans style avec un #, 
+       on peut également enlever le p pour indiquer que ça concerne tous les élements avec l'id concerné, ou mettre ul à la place de p pour une liste */
+    /* De manière générale, on utilise plutôt les class que les id : en terme de code, il faut mettre class à la place de id dans la balise, 
+       et à la place de # il faut mettre un . */  
+    background-color: black;
+    color:white;
+    display: inline-block;
+    text-align:center;
+    padding : 8px 18px;
+    /* Ici on a un margin-bottom de 16 qui s'est appliqué par défaut, on le force à 0 pour que le bloc Recette se rapproche de contenu */
+    margin-bottom: 0;
+    /* On préfère mettre un margin-top de 0 ici pour que ça soit plutôt la div qui gère la marge */
+    /* MAJ : avec nouvelle façon, je suis passé à une autre valeur */
+    margin-top: -15px;
+    /* font-weight : - bold : Pour mettre en gras */
+    font-weight: bold;
+}
+/* On peut mettre deux classes à une même balise, si elles partagent des points communs avec d'autres balises */
+div.categorie{
+    /* Ici on gère le bloc qui contient le texte "Recette", et non pas juste le texte "Recette" */    
+    margin-bottom: 0px;
+    margin-top: 0px;
+    /* Nouvelle façon de mettre Recette en décalé sur les deux blocs */
+    overflow: visible;
+}
+div.separateur{
+    /* Ici pas de text-align:center car ce n'est pas du texte ! */
+    width: 100px;
+    height: 1px;
+    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+table.info{
+    /* Ici avec position: absolute et bottow, on positionne le tableau sur l'image, et avec width: 100% on lui dit de prendre toute l'image */
+    position: absolute;
+    color:white; 
+    bottom: 0; 
+    width: 100%; 
+    background-color: #6C829DC0; 
+    height: 80px;
+}
+div.info{
+    /* position: relative : permet de déplacer le contenu d'une div par rapport à sa position initiale, et permet la superposition d'éléments */
+    position: relative;
+    /*background-color: blue; --> était utile pour voir les problèmes d'alignement */
+}
+/* Pour appliquer des propriétés à des th dans une table par exemple */
+table.info th{
+    font-size: 16px;
+    /* vertical-align : pour positionner du contenu dans une cellule : - bottom : vers le bas
+                                                                       - top : vers le haut */
+    vertical-align: bottom;
+    /* pour écarter les th des td */
+    padding-bottom: 8px;
+}
+/* Pour appliquer des propriétés à des td dans une table par exemple */
+table.info td{
+    text-align: center;
+    font-size: 13px;
+    vertical-align: top;
+}
+img.info{
+    display: block;
+    max-height: 400px;
+    /* object-fit :cover, l'image ne se déforme pas, mais on peut en perdre une partie en modifiant la taille de la page */
+    object-fit: cover;
+    /* min-height : taille minimale : même si l'image n'est pas chargée, on lui réserve un emplacement */
+    min-height: 200px;
+}
+/* On peut regrouper des propriétés communes comme ça : */
+div.colonne{
+/* 45% * 2 = 90%, il nous reste 10 %, c'est la sépération entre les deux séparateurs des deux colonnes */    
+    width: 45%;
+    margin-top: 20px;
+}
+div.colonne h2{
+    text-align: center;
+/* text-transfrom : uppercase : pour mettre en majuscules */    
+    text-transform: uppercase;
+    font-size: 15px;
+/* pour définir les bordures de la cellule ou d'une partie de la cellule (bottom : pour la partie du bas de la cellule) */   
+    border-bottom: 5px solid #6C829D;
+    padding-bottom: 5px;
+}
+div.colonne1{
+/*background-color: lightblue;*/
+/* sans ce display, la colonne2 s'affiche en-dessus à droite de la colonne1 */
+display: inline-block;
+/* les 10% restant */
+margin-right: 10%;
+}
+div.colonne2{
+/* float: right : pour que le bloc s'affiche sur la droite, mais du coup c'est la colonne à gauche qui impose la taille du contenu */
+/* en conséquent, la colonne2 peut dépasser du contenu */
+float: right;
+}
+div.ingredients p{
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid lightgray;
+    padding: 8px 0;
+    margin-top: 4px;
+    margin-bottom:0;
+}
+table.preparation p.numero{
+    background-color: #6C829D;
+    color: white;
+    width: 25px;
+    text-align: center;
+    height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 4px;
+    /* box-sizing: border-box : on force la taille de la boîte à 25 * 25 (height) */
+    box-sizing: border-box;
+    /* bored-radius : pour avoir l'effet d'un cercle */
+    border-radius: 50%;
+    margin: 0;
+}
+table.preparation td{
+    vertical-align: top;
+}
+td.preparation_etape{
+    font-size:  14px;
+    padding-left: 10px;
+    padding-bottom : 10px;
+}
+table.preparation tr{
+/* Dans une  table, ça ne sert à rien de donner une min et max-height, donner une height directement, ça sera interprété comme un min-height */
+    height: 40px;
+}
