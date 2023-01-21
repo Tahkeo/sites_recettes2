@@ -1,5 +1,6 @@
 /* Permet de gérer tout ce qui déborde du contenu, le mettre au tout début d'un fichier css ! */
 /* auto : réadapter la taille du conteneur automatiquement pour qu'il contienne tout ce qui déborde */
+/* règle importante dans du code CSS : quand il y a un doute, c'est toujours la dernière règle qui l'emporte sur le reste ! */
 *{
     overflow: auto;
 }
@@ -12,12 +13,12 @@ div.contenu{
     /* On peut mettre d'autres élements concernés par le style avec des virgules, exemple : p.categorie, h2.categorie, ul, etc. */
     /* Différence entre class et id : l'id ça ne concerne qu'un seul élément, contrairement à la class */
     background-color: white;
-    margin: 60px 10% 80px 60px;
+    margin: 40px 8px 40px 8px;
     /* padding : fonctionne comme margin mais c'est pour les marges */
-    padding : 0px 30px 30px 30px;
+    padding : 8px 8px 20px 8px;
     /* Pour éviter que le tableau déborde de contenu, lorsque l'on rétrécit à fond la page */
-    /* mais cela a créé un nouveau problème : "Recette" ne s'aligne plus bien quand la fenêtre est petite ! A SUIVRE .... */
-    min-width: 350px;
+    /* mais cela a créé un nouveau problème : "Recette" ne s'aligne plus bien quand la fenêtre est petite ! */
+    /* min-width: 350px; on a déplacé ce code tout en bas ! */
     /* box-shadow : mettre un effet d'ombre sur le bloc */
     /* il existe aussi text-shadow pour le texte */
     box-shadow: 0px 0px 8px 8px rgba(0,0,0,0.1);
@@ -108,7 +109,7 @@ table.info{
     bottom: 0; 
     width: 100%; 
     background-color: #6C829DC0; 
-    height: 80px;
+    height: 50px;
 }
 div.info{
     /* position: relative : permet de déplacer le contenu d'une div par rapport à sa position initiale, et permet la superposition d'éléments */
@@ -117,7 +118,7 @@ div.info{
 }
 /* Pour appliquer des propriétés à des th dans une table par exemple */
 table.info th{
-    font-size: 16px;
+    font-size: 14px;
     /* vertical-align : pour positionner du contenu dans une cellule : - bottom : vers le bas
                                                                        - top : vers le haut */
     vertical-align: bottom;
@@ -127,7 +128,7 @@ table.info th{
 /* Pour appliquer des propriétés à des td dans une table par exemple */
 table.info td{
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
     vertical-align: top;
 }
 img.info{
@@ -139,9 +140,8 @@ img.info{
     min-height: 200px;
 }
 /* On peut regrouper des propriétés communes comme ça : */
-div.colonne{
-/* 45% * 2 = 90%, il nous reste 10 %, c'est la sépération entre les deux séparateurs des deux colonnes */    
-    width: 45%;
+div.colonne{   
+    width: 100%;
     margin-top: 20px;
 }
 div.colonne h2{
@@ -155,15 +155,8 @@ div.colonne h2{
 }
 div.colonne1{
 /*background-color: lightblue;*/
-/* sans ce display, la colonne2 s'affiche en-dessus à droite de la colonne1 */
+/* sans ce display, la colonne2 s'affiche en-dessous à droite de la colonne1 */
 display: inline-block;
-/* les 10% restant */
-margin-right: 10%;
-}
-div.colonne2{
-/* float: right : pour que le bloc s'affiche sur la droite, mais du coup c'est la colonne à gauche qui impose la taille du contenu */
-/* en conséquent, la colonne2 peut dépasser du contenu */
-float: right;
 }
 div.ingredients p{
     text-align: center;
@@ -200,3 +193,44 @@ table.preparation tr{
 /* Dans une  table, ça ne sert à rien de donner une min et max-height, donner une height directement, ça sera interprété comme un min-height */
     height: 40px;
 }
+/* Styles pour ordinateur --> si la taille de l'écran est de minimum 768 pixels */
+@media only screen and (min-width: 768px) {
+    div.contenu{
+        /* En conséquent sur pc uniquement, le min-width de 350 pixels s'appliquera, et non sur mobile par exemple */
+        min-width: 350px;
+        margin: 60px 10% 80px 60px;
+        padding : 0px 30px 30px 30px;
+    }
+    table.info{
+        height: 80px;
+    }
+    table.info td{
+        font-size: 13px;
+    }
+    table.info th{
+        font-size: 16px;
+    }
+    /* On peut regrouper des propriétés communes comme ça : */
+    div.colonne{
+    /* 45% * 2 = 90%, il nous reste 10 %, c'est la sépération entre les deux séparateurs des deux colonnes */    
+        width: 45%;
+    }
+    div.colonne1{
+    /* les 10% restant */
+    margin-right: 10%;
+    }
+    div.colonne2{
+    /* float: right : pour que le bloc s'affiche sur la droite, mais du coup c'est la colonne à gauche qui impose la taille du contenu */
+    /* en conséquent, la colonne2 peut dépasser du contenu */
+    float: right;
+    }
+  }
+  /* Styles pour les grands écrans, pour fixer le contenu à partir d'une certaine taille de fenêtre : */
+  @media only screen and (min-width: 768px) {
+    div.contenu{
+        margin-left: auto;
+        margin-right: auto;
+        width: 645px;
+    }
+  }
+  
